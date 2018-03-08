@@ -14,10 +14,22 @@ body {
     margin: 30px;
 }
 
-#grid-container {
+/* #grid-container {
     display: grid;
     grid-template-columns: 175px 300px;
     grid-gap: 5px;
+} */
+
+#left {
+    float: left;
+    width: 175px;
+    border: 2px solid silver;
+}
+
+#right {
+    float: left;
+    margin-left: 10px;
+    border: 2px solid silver;
 }
 
 #lists {
@@ -25,23 +37,31 @@ body {
     display: grid;
     grid-gap: 1px;
     align-items: center;
+    font-size: 24px;
 }
 
 #checklist {
     background-color: silver;
     display: grid;
     grid-gap: 1px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
-.active-list {
-    background-color: whitesmoke;
+.lists-entry {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
 }
 
 .listname {
     background-color: whitesmoke;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 6px 10px;
+}
+
+.active-list {
+    background-color: whitesmoke;
+    font-size: 12px;
+    padding-top: 13px;
+    padding-right: 10px;
 }
 
 .item {
@@ -53,8 +73,13 @@ body {
 
 .check {
     justify-self: center;
+    padding: 0 5px 5px;
 }
 
 .delete-button {
     justify-self: center;
+}
+
+.delete-button:hover {
+    cursor: pointer;
 }

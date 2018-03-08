@@ -11,28 +11,38 @@
     <div id="main">
         <!-- This is where React app will go -->
         <!-- Mockup (break down into components later -->
-        <div id="grid-container">
+        <div id="left">
             <div id="lists">
-                <div class="listname active-list">Groceries</div>
-                <div class="listname">Movies</div>
-                <div class="listname">Gifts</div>
-                <div class="listname">Packing List</div>
-                <div class="listname">Wish List</div>
+                <div class="lists-entry">
+                    <div class="listname">Groceries</div>
+                    <div class="active-list">&#9658;</div>
+                </div>
+                <div class="lists-entry">
+                    <div class="listname">Movies</div>
+                    <div class="active-list"></div>
+                </div>
+                <div class="lists-entry">
+                    <div class="listname">Gifts</div>
+                    <div class="active-list"></div>
+                </div>
+                <div class="lists-entry">
+                    <div class="listname">Packing List</div>
+                    <div class="active-list"></div>
+                </div>
+                <div class="lists-entry">
+                    <div class="listname">Wish List</div>
+                    <div class="active-list"></div>
+                </div>
             </div>
-
+        </div>
+        <div id="right">
             <div id="checklist">
-
-
                 <div class="item">
                     <div class="check">
                         <input type="checkbox" name="item1" id="item1">
                     </div>
-                    <div class="item-text">
-                        Milk
-                    </div>
-                    <div class="delete-button">
-                        &times;
-                    </div>
+                    <div class="item-text">Milk</div>
+                    <div class="delete-button">&times;</div>
                 </div>
 
                 <div class="item">
@@ -130,7 +140,6 @@
                         &times;
                     </div>
                 </div>
-
 
             </div>
         </div>

@@ -1,0 +1,15 @@
+#grid-container {
+    display: grid;
+    grid-template-columns: 175px 300px;
+    grid-gap: 5px;
+}
+
+#lists {
+    display: grid;
+    align-items: center;
+}
+
+#checklist {
+    display: grid;
+    align-items: center;
+}

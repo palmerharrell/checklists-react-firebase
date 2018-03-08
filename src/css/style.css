@@ -1,3 +1,19 @@
+html {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 30px;
+}
+
 #grid-container {
     display: grid;
     grid-template-columns: 175px 300px;
@@ -5,11 +21,40 @@
 }
 
 #lists {
+    background-color: silver;
     display: grid;
+    grid-gap: 1px;
     align-items: center;
 }
 
 #checklist {
+    background-color: silver;
     display: grid;
+    grid-gap: 1px;
+    font-size: 14px;
+}
+
+.active-list {
+    background-color: whitesmoke;
+}
+
+.listname {
+    background-color: whitesmoke;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.item {
+    background-color: whitesmoke;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
     align-items: center;
+}
+
+.check {
+    justify-self: center;
+}
+
+.delete-button {
+    justify-self: center;
 }

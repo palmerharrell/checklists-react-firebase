@@ -10,76 +10,80 @@ html {
     box-sizing: inherit;
 }
 
-body {
-    margin: 30px;
+#header {
+    background-color: rgb(138, 153, 197);
+    color: whitesmoke;
+    text-align: center;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
-/* #grid-container {
-    display: grid;
-    grid-template-columns: 175px 300px;
-    grid-gap: 5px;
-} */
-
-#left {
-    float: left;
-    width: 175px;
-    border: 2px solid silver;
+ul {
+    /* padding: 0; */
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-#right {
-    float: left;
-    margin-left: 10px;
-    border: 2px solid silver;
+li {
+    list-style: none;
+    padding: 5px;
+}
+
+#main {
+    margin: 70px auto 30px auto;
+    /* border: 1px solid red; */
 }
 
 #lists {
-    background-color: silver;
-    display: grid;
-    grid-gap: 1px;
-    align-items: center;
-    font-size: 24px;
+    /* border: 1px solid green; */
 }
 
-#checklist {
-    background-color: silver;
-    display: grid;
-    grid-gap: 1px;
-    font-size: 20px;
+#details {
+    /* border: 1px solid blue; */
+    border-top: 2px solid rgb(138, 153, 197);
 }
 
-.lists-entry {
-    display: grid;
-    grid-template-columns: 10fr 1fr;
+.item-input {
+    width: 92%;
+    margin-left: 5px;
 }
 
-.listname {
+#add-item {
+    text-align: center;
+}
+
+.item:nth-child(odd) {
+    /* background-color: whitesmoke; */
+}
+
+.example {
     background-color: whitesmoke;
-    padding: 6px 10px;
 }
 
-.active-list {
-    background-color: whitesmoke;
-    font-size: 12px;
-    padding-top: 13px;
-    padding-right: 10px;
-}
+/* Desktop Style */
+@media (min-width: 769px) {
+    #main {
+        width: 80%;
+        margin: 100px auto 30px auto;
+    }
 
-.item {
-    background-color: whitesmoke;
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    align-items: center;
-}
+    #lists {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: -5px;
+        width: 200px;
+    }
 
-.check {
-    justify-self: center;
-    padding: 0 5px 5px;
-}
+    #details {
+        display: inline-block;
+        vertical-align: top;
+        width: 66%;
+        border-top: none;
+        border-left: 2px solid rgb(138, 153, 197);
+    }
 
-.delete-button {
-    justify-self: center;
-}
-
-.delete-button:hover {
-    cursor: pointer;
+    #list-items {
+    }
 }

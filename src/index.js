@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
-import ListGroup from "./components/ListGroup";
+import App from "./components/App";
 import "./css/normalize.css";
 import "./css/style.css";
 
-render(<ListGroup />, document.querySelector("#main"));
+render(<App />, document.querySelector("#main"));

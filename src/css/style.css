@@ -31,9 +31,12 @@ li {
     padding: 5px;
 }
 
-#main {
+/* #main {
     margin: 70px auto 30px auto;
-    /* border: 1px solid red; */
+} */
+
+#content {
+    margin: 70px auto 30px auto;
 }
 
 #lists {
@@ -45,9 +48,15 @@ li {
     border-top: 2px solid rgb(138, 153, 197);
 }
 
+.item {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+
 .item-input {
-    width: 92%;
-    margin-left: 5px;
+    width: 90%;
+    margin-left: 15px;
 }
 
 #add-item {
@@ -64,7 +73,12 @@ li {
 
 /* Desktop Style */
 @media (min-width: 769px) {
-    #main {
+    /* #main {
+        width: 80%;
+        margin: 100px auto 30px auto;
+    } */
+
+    #content {
         width: 80%;
         margin: 100px auto 30px auto;
     }

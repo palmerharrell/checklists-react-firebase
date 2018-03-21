@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
-import List from "./List";
+import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
 
 class App extends React.Component {
@@ -31,6 +31,9 @@ class App extends React.Component {
         });
     };
 
+    // TODO: This is padded to ItemGroup. It will need to provide
+    //  the listId for the currently active list
+    //  *** (or store active list in state?) ***
     addItem = item => {
         console.log("Adding item to list");
         console.log(item);
@@ -42,7 +45,7 @@ class App extends React.Component {
                 <Header headerText="CheckLists" />
                 <div id="content">
                     <ListGroup addList={this.addList} />
-                    <List addItem={this.addItem} />
+                    <ItemGroup addItem={this.addItem} />
                 </div>
             </Fragment>
         );

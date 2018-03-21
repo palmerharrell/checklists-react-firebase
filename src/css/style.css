@@ -67,8 +67,8 @@ li {
     /* background-color: whitesmoke; */
 }
 
-.example {
-    background-color: whitesmoke;
+.selected-list {
+    background-color: lightblue;
 }
 
 /* Desktop Style */

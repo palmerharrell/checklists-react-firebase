@@ -11,14 +11,18 @@ class ListGroup extends React.Component {
     };
 
     render() {
+        const { activeList, lists } = this.props.listState;
+
         return (
             <div id="lists">
                 <ul className="list-names">
-                    <List value="Movies" active={false} />
-                    <List value="Groceries" active={true} />
-                    <List value="Music" active={false} />
-                    <List value="Gifts" active={false} />
-                    <List value="Wishlist" active={false} />
+                    {Object.keys(lists).map(key => (
+                        <List
+                            value={`${lists[key].name}`}
+                            active={key === activeList ? true : false}
+                            key={key}
+                        />
+                    ))}
                 </ul>
                 <button onClick={this.createList}>Add List</button>
             </div>

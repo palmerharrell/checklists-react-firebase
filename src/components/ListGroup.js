@@ -22,6 +22,7 @@ class ListGroup extends React.Component {
                             value={`${lists[key].name}`}
                             active={key === activeList ? true : false}
                             key={key}
+                            setActiveList={this.props.setActiveList}
                         />
                     ))}
                 </ul>

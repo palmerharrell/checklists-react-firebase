@@ -23,6 +23,14 @@ class ItemGroup extends React.Component {
                         />
                     ))} */}
 
+                    {/* NOTE: Map over unchecked items, then checked items.
+                        This should probably use filter instead of if/else
+                        and be combined into one renderItems method that
+                        could be called once for unchecked items and once
+                        for checked items.
+                    */}
+
+                    {/* Render unchecked items */}
                     {Object.keys(items).map(key => {
                         if (!items[key].checked) {
                             return (
@@ -34,9 +42,12 @@ class ItemGroup extends React.Component {
                                     txtkey={`txt${key}`}
                                 />
                             );
+                        } else {
+                            return null;
                         }
                     })}
 
+                    {/* Render checked items */}
                     {Object.keys(items).map(key => {
                         if (items[key].checked) {
                             return (
@@ -48,6 +59,8 @@ class ItemGroup extends React.Component {
                                     txtkey={`txt${key}`}
                                 />
                             );
+                        } else {
+                            return null;
                         }
                     })}
                 </ul>

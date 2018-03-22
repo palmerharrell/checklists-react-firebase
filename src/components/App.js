@@ -23,7 +23,13 @@ class App extends React.Component {
         }
     };
 
-    // TODO: Should be able to make it work with this initial state
+    // TODO: Should be able to make it work with this empty initial state
+    //      Try this:
+    //      In render(): If state.activeList !== "",
+    //      create activeList & activeListItems consts.
+    //      Then if activeList(or activeListItems, or just state.activeList?)
+    //      const exists, provide items to
+    //      ItemGroup props.
     // state = {
     //     activeList: "",
     //     lists: {}
@@ -50,6 +56,12 @@ class App extends React.Component {
             activeList: sampleLists.activeList,
             lists: sampleLists.lists
         });
+    };
+
+    // TODO: changeActiveList
+    setActiveList = newActiveList => {
+        // change activeList in state, pass this to List (through ListGroup)
+        console.log("changing active list");
     };
 
     // TODO: addList
@@ -82,7 +94,11 @@ class App extends React.Component {
             <Fragment>
                 <Header headerText="CheckLists" />
                 <div id="content">
-                    <ListGroup addList={this.addList} listState={this.state} />
+                    <ListGroup
+                        addList={this.addList}
+                        setActiveList={this.setActiveList}
+                        listState={this.state}
+                    />
                     <ItemGroup
                         addItem={this.addItem}
                         items={activeListItems}

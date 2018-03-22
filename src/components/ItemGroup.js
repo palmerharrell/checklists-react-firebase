@@ -2,14 +2,8 @@ import React from "react";
 import Item from "./Item";
 
 class ItemGroup extends React.Component {
-    // TODO: create and add item typed in input
     createItem = () => {
-        const item = {
-            text: "Cheese",
-            listId: "abcd1234",
-            checked: false
-        };
-        this.props.addItem(item);
+        this.props.addItem(this.props.listId);
     };
 
     render() {

@@ -23,6 +23,12 @@ class App extends React.Component {
         }
     };
 
+    // TODO: Should be able to make it work with this initial state
+    // state = {
+    //     activeList: "",
+    //     lists: {}
+    // };
+
     componentDidMount() {
         const { params } = this.props.match;
         if (params.listsId === "demo") {
@@ -30,6 +36,9 @@ class App extends React.Component {
         }
     }
 
+    // NOTE: Trying to figure out why I couldn't access
+    //       this.state.lists[activeList].items (it didn't exist yet,
+    //       added dummy list & item to initial state for now)
     // componentDidUpdate() {
     //     const activeList = this.state.activeList;
     //     console.log(activeList);
@@ -54,12 +63,15 @@ class App extends React.Component {
         });
     };
 
-    // TODO: This is passed to ItemGroup. It will need to provide
-    //  the listId for the currently active list
-    //  *** (or store active list in state?) ***
-    addItem = item => {
-        console.log("Adding item to list");
-        console.log(item);
+    addItem = key => {
+        const lists = { ...this.state.lists };
+        lists[key].items[`item${Date.now()}`] = {
+            text: "",
+            checked: false
+        };
+        this.setState({
+            lists
+        });
     };
 
     render() {
@@ -70,7 +82,11 @@ class App extends React.Component {
                 <Header headerText="CheckLists" />
                 <div id="content">
                     <ListGroup addList={this.addList} listState={this.state} />
-                    <ItemGroup addItem={this.addItem} items={activeListItems} />
+                    <ItemGroup
+                        addItem={this.addItem}
+                        items={activeListItems}
+                        listId={activeList}
+                    />
                 </div>
             </Fragment>
         );

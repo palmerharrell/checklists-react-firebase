@@ -2,6 +2,7 @@ import React from "react";
 import List from "./List";
 
 class ListGroup extends React.Component {
+    //TODO: createList
     createList = () => {
         const list = {
             name: "",

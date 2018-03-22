@@ -2,10 +2,10 @@ import React from "react";
 import List from "./List";
 
 class ListGroup extends React.Component {
-    //TODO: createList
+    //TODO: createList: ask for name of new list?
     createList = () => {
         const list = {
-            name: "",
+            name: "New List",
             items: {}
         };
         this.props.addList(list);

@@ -52,6 +52,7 @@ class App extends React.Component {
         });
     };
 
+    // TODO: addList
     addList = list => {
         // Copy existing state
         const lists = { ...this.state.lists };

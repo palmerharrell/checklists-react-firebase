@@ -12,7 +12,8 @@ class ItemGroup extends React.Component {
         return (
             <div id="details">
                 <ul id="list-items">
-                    {Object.keys(items).map(key => (
+                    {/* NOTE: How it was done without regard for checked status: */}
+                    {/* {Object.keys(items).map(key => (
                         <Item
                             value={`${items[key].text}`}
                             checked={items[key].checked}
@@ -20,7 +21,35 @@ class ItemGroup extends React.Component {
                             cbkey={`cb${key}`}
                             txtkey={`txt${key}`}
                         />
-                    ))}
+                    ))} */}
+
+                    {Object.keys(items).map(key => {
+                        if (!items[key].checked) {
+                            return (
+                                <Item
+                                    value={`${items[key].text}`}
+                                    checked={items[key].checked}
+                                    key={key}
+                                    cbkey={`cb${key}`}
+                                    txtkey={`txt${key}`}
+                                />
+                            );
+                        }
+                    })}
+
+                    {Object.keys(items).map(key => {
+                        if (items[key].checked) {
+                            return (
+                                <Item
+                                    value={`${items[key].text}`}
+                                    checked={items[key].checked}
+                                    key={key}
+                                    cbkey={`cb${key}`}
+                                    txtkey={`txt${key}`}
+                                />
+                            );
+                        }
+                    })}
                 </ul>
                 <div id="add-item">
                     <button onClick={this.createItem}>Add Item</button>

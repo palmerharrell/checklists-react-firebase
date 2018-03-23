@@ -72,10 +72,12 @@ class App extends React.Component {
         });
     };
 
-    // TODO: changeActiveList
     setActiveList = newActiveList => {
-        // change activeList in state, pass this to List (through ListGroup)
-        console.log("changing active list");
+        const listData = { ...this.state.listData };
+        listData.activeList = newActiveList;
+        this.setState({
+            listData
+        });
     };
 
     // TODO: addList
@@ -112,7 +114,6 @@ class App extends React.Component {
     render() {
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
-        console.log("activeList: " + activeList);
         let activeListItems = {};
         if (activeList !== "") {
             activeListItems = listData.lists[activeList].items;

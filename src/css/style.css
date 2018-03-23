@@ -48,6 +48,10 @@ li {
     border-top: 2px solid rgb(138, 153, 197);
 }
 
+.list-name {
+    cursor: pointer;
+}
+
 .item {
     padding-left: 10px;
     padding-right: 10px;

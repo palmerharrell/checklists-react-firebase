@@ -13,8 +13,6 @@ class ListGroup extends React.Component {
 
     render() {
         const { activeList, lists } = this.props.listState;
-        console.log("ListGroup activeList: " + activeList);
-        console.log("ListGroup lists: " + lists);
         return (
             <div id="lists">
                 <ul className="list-names">
@@ -24,6 +22,7 @@ class ListGroup extends React.Component {
                                   value={`${lists[key].name}`}
                                   active={key === activeList ? true : false}
                                   key={key}
+                                  index={key}
                                   setActiveList={this.props.setActiveList}
                               />
                           ))

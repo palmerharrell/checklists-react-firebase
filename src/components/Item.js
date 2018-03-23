@@ -10,7 +10,6 @@ class Item extends React.Component {
     };
 
     handleCheckboxChange = e => {
-        console.log(e.currentTarget.checked);
         const updatedItem = {
             text: this.props.value,
             checked: e.currentTarget.checked

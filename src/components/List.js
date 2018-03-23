@@ -1,10 +1,8 @@
 import React from "react";
 
 class List extends React.Component {
-    // TODO: handle events (this works differently in React, see ref video?)
     changeActiveList = e => {
-        console.log(e);
-        this.props.setActiveList("list4");
+        this.props.setActiveList(this.props.index);
     };
 
     render() {

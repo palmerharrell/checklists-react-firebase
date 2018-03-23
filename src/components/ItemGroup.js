@@ -13,8 +13,11 @@ class ItemGroup extends React.Component {
                 value={`${items[key].text}`}
                 checked={items[key].checked}
                 key={key}
+                index={key}
+                listId={this.props.listId}
                 cbkey={`cb${key}`}
                 txtkey={`txt${key}`}
+                updateItem={this.props.updateItem}
             />
         );
     };

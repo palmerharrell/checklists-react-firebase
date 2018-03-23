@@ -6,18 +6,15 @@ import sampleLists from "../sample-data";
 import base from "../base";
 
 class App extends React.Component {
-    // this.state.lists[activeList].items does not exist without a dummy
-    // list in state, so ItemGroup throws an error when it tries to render
-    // There's probably a better way to handle this.
     state = {
         listData: {
             activeList: "list1",
             lists: {
                 list1: {
-                    name: "Test List",
+                    name: "Reminders",
                     items: {
                         item1: {
-                            text: "Test Item",
+                            text: "",
                             checked: false
                         }
                     }
@@ -26,16 +23,9 @@ class App extends React.Component {
         }
     };
 
-    // TODO: Should be able to make it work with this empty initial state
-    //      Try this:
-    //      In render(): If state.activeList !== "",
-    //      create activeList & activeListItems consts.
-    //      Then if activeList(or activeListItems, or just state.activeList?)
-    //      const exists, provide items to
-    //      ItemGroup props.
+    // TODO: Make this initial state work
     // state = {
-    //     activeList: "",
-    //     lists: {}
+    //     listData: {}
     // };
 
     componentDidMount() {

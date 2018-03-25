@@ -72,11 +72,13 @@ class App extends React.Component {
 
     // TODO: addList
     addList = list => {
-        // Copy existing state
         const listData = { ...this.state.listData };
-        // Add new list to copy of state
-        listData.lists[`list${Date.now()}`] = list;
-        // Set new lists object to state
+        if (!listData.lists) {
+            listData.lists = {};
+        }
+        const newListKey = `list${Date.now()}`;
+        listData.lists[newListKey] = list;
+        listData.activeList = newListKey;
         this.setState({
             listData
         });
@@ -84,6 +86,9 @@ class App extends React.Component {
 
     addItem = key => {
         const listData = { ...this.state.listData };
+        if (!listData.lists[key].items) {
+            listData.lists[key].items = {};
+        }
         listData.lists[key].items[`item${Date.now()}`] = {
             text: "",
             checked: false

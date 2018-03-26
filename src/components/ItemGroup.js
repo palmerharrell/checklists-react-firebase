@@ -24,11 +24,15 @@ class ItemGroup extends React.Component {
 
     render() {
         const items = this.props.items;
-        if (!items) {
+        if (!items || Object.keys(items).length === 0) {
             return (
                 <div id="details">
                     <div id="add-item">
-                        <button onClick={this.createItem} className="lonely">
+                        <button
+                            onClick={this.createItem}
+                            className="lonely"
+                            disabled={this.props.listId === ""}
+                        >
                             Add Item
                         </button>
                     </div>

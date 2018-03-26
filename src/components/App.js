@@ -79,6 +79,17 @@ class App extends React.Component {
         });
     };
 
+    deleteItem = (key, listId) => {
+        console.log("List ID: " + listId);
+        console.log("Item Key: " + key);
+
+        const listData = { ...this.state.listData };
+        listData.lists[listId].items[key] = null;
+        this.setState({
+            listData
+        });
+    };
+
     render() {
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
@@ -96,10 +107,11 @@ class App extends React.Component {
                         listState={listData}
                     />
                     <ItemGroup
-                        addItem={this.addItem}
-                        updateItem={this.updateItem}
                         items={activeListItems}
                         listId={activeList}
+                        addItem={this.addItem}
+                        updateItem={this.updateItem}
+                        deleteItem={this.deleteItem}
                     />
                 </div>
             </Fragment>

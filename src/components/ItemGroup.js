@@ -8,18 +8,23 @@ class ItemGroup extends React.Component {
 
     renderItems = key => {
         const items = this.props.items;
-        return (
-            <Item
-                value={`${items[key].text}`}
-                checked={items[key].checked}
-                key={key}
-                index={key}
-                listId={this.props.listId}
-                // cbkey={`cb${key}`}
-                // txtkey={`txt${key}`}
-                updateItem={this.props.updateItem}
-            />
-        );
+        if (items[key]) {
+            return (
+                <Item
+                    value={`${items[key].text}`}
+                    checked={items[key].checked}
+                    key={key}
+                    index={key}
+                    listId={this.props.listId}
+                    // cbkey={`cb${key}`}
+                    // txtkey={`txt${key}`}
+                    updateItem={this.props.updateItem}
+                    deleteItem={this.props.deleteItem}
+                />
+            );
+        } else {
+            return null;
+        }
     };
 
     render() {

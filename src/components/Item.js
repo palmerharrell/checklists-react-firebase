@@ -17,6 +17,10 @@ class Item extends React.Component {
         this.props.updateItem(this.props.index, this.props.listId, updatedItem);
     };
 
+    handleDelete = e => {
+        this.props.deleteItem(this.props.index, this.props.listId);
+    };
+
     render() {
         return (
             <li className="item">
@@ -34,7 +38,9 @@ class Item extends React.Component {
                     onChange={this.handleTextChange}
                     autoFocus={this.props.value === ""}
                 />
-                <span className="delete">&times;</span>
+                <span className="delete" onClick={this.handleDelete}>
+                    &times;
+                </span>
             </li>
         );
     }

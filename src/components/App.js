@@ -57,6 +57,11 @@ class App extends React.Component {
         });
     };
 
+    // TODO: deleteList
+    deleteList = listId => {
+        console.log("listId: " + listId);
+    };
+
     addItem = listId => {
         const listData = { ...this.state.listData };
         if (!listData.lists[listId].items) {
@@ -80,11 +85,14 @@ class App extends React.Component {
     };
 
     deleteItem = (key, listId) => {
-        console.log("List ID: " + listId);
-        console.log("Item Key: " + key);
-
+        const { params } = this.props.match;
         const listData = { ...this.state.listData };
-        listData.lists[listId].items[key] = null;
+        // Delete from state if local, set to null if on Firebase
+        if (params.listsId === "demo") {
+            delete listData.lists[listId].items[key];
+        } else {
+            listData.lists[listId].items[key] = null;
+        }
         this.setState({
             listData
         });

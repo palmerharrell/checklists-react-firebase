@@ -28,9 +28,17 @@ class ListGroup extends React.Component {
                           ))
                         : null}
                 </ul>
-                <button onClick={this.createList}>New List</button>
-                <button>Rename List</button>
-                <button>Delete List</button>
+                <div className="list-buttons">
+                    <div className="btngrp-new-list">
+                        <button onClick={this.createList}>New List</button>
+                    </div>
+                    <div className="btngrp-edit-list">
+                        <span className="btn-rename-list">
+                            <button>Rename List</button>
+                        </span>
+                        <button className="btn-delete-list">Delete List</button>
+                    </div>
+                </div>
             </div>
         );
     }

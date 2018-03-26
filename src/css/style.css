@@ -64,6 +64,10 @@ li {
     font-size: 1.5em;
 }
 
+.list-buttons button {
+    margin: 0 10px;
+}
+
 .item {
     padding-left: 10px;
     padding-right: 10px;
@@ -125,7 +129,8 @@ li {
     }
 
     .list-names {
-        margin-bottom: 16px;
+        /* margin-bottom: 16px; */
+        margin-bottom: 0;
         text-align: left;
     }
 
@@ -135,6 +140,20 @@ li {
         width: auto;
         font-size: inherit;
         border-right: 2px solid rgb(138, 153, 197);
+    }
+
+    .btngrp-new-list {
+        margin-bottom: 25px;
+        margin-right: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-right: 2px solid rgb(138, 153, 197);
+        border-bottom: 2px solid rgb(138, 153, 197);
+    }
+
+    .btn-rename-list {
+        display: block;
+        margin-bottom: 10px;
     }
 
     .lonely {

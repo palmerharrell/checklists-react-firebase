@@ -17,7 +17,7 @@ class Item extends React.Component {
         this.props.updateItem(this.props.index, this.props.listId, updatedItem);
     };
 
-    handleDelete = e => {
+    handleDelete = () => {
         this.props.deleteItem(this.props.index, this.props.listId);
     };
 

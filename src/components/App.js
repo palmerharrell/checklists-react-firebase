@@ -7,26 +7,8 @@ import base from "../base";
 
 class App extends React.Component {
     state = {
-        listData: {
-            activeList: "list1",
-            lists: {
-                list1: {
-                    name: "Reminders",
-                    items: {
-                        item1: {
-                            text: "",
-                            checked: false
-                        }
-                    }
-                }
-            }
-        }
+        listData: {}
     };
-
-    // TODO: Make this initial state work
-    // state = {
-    //     listData: {}
-    // };
 
     componentDidMount() {
         const { params } = this.props.match;
@@ -46,15 +28,6 @@ class App extends React.Component {
             base.removeBinding(this.ref);
         }
     }
-
-    // NOTE: Trying to figure out why I couldn't access
-    //       this.state.lists[activeList].items (it didn't exist yet,
-    //       added dummy list & item to initial state for now)
-    // componentDidUpdate() {
-    //     const activeList = this.state.activeList;
-    //     console.log(activeList);
-    //     console.log(this.state.lists[activeList].items);
-    // }
 
     loadSampleLists = () => {
         this.setState({
@@ -84,12 +57,12 @@ class App extends React.Component {
         });
     };
 
-    addItem = key => {
+    addItem = listId => {
         const listData = { ...this.state.listData };
-        if (!listData.lists[key].items) {
-            listData.lists[key].items = {};
+        if (!listData.lists[listId].items) {
+            listData.lists[listId].items = {};
         }
-        listData.lists[key].items[`item${Date.now()}`] = {
+        listData.lists[listId].items[`item${Date.now()}`] = {
             text: "",
             checked: false
         };

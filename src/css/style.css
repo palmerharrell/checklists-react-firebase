@@ -40,15 +40,15 @@ li {
 }
 
 #lists {
-    padding-bottom: 10px;
+    padding-bottom: 14px;
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
 }
 
-/* #details {
-    border-top: 2px solid rgb(138, 153, 197);
-} */
+#details {
+    border-top: 3px solid rgb(138, 153, 197);
+}
 
 .list-names {
     margin-bottom: 5px;
@@ -67,12 +67,20 @@ li {
 .item {
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 1px;
     margin-bottom: 5px;
 }
 
 .item-input {
-    width: 90%;
+    width: 80%;
     margin-left: 15px;
+}
+
+.delete {
+    margin-left: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
 }
 
 #add-item {
@@ -81,6 +89,10 @@ li {
 
 .selected-list {
     background-color: lightblue;
+}
+
+.lonely {
+    margin-top: 14px;
 }
 
 /* Desktop Style */
@@ -109,7 +121,7 @@ li {
         vertical-align: top;
         width: 66%;
         border-top: none;
-        border-left: 2px solid rgb(138, 153, 197);
+        /* border-left: 2px solid rgb(138, 153, 197); */
     }
 
     .list-names {
@@ -122,5 +134,10 @@ li {
         margin: 0;
         width: auto;
         font-size: inherit;
+        border-right: 2px solid rgb(138, 153, 197);
+    }
+
+    .lonely {
+        margin-top: 20px;
     }
 }

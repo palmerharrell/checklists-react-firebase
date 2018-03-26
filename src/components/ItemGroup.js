@@ -15,8 +15,8 @@ class ItemGroup extends React.Component {
                 key={key}
                 index={key}
                 listId={this.props.listId}
-                cbkey={`cb${key}`}
-                txtkey={`txt${key}`}
+                // cbkey={`cb${key}`}
+                // txtkey={`txt${key}`}
                 updateItem={this.props.updateItem}
             />
         );
@@ -26,23 +26,19 @@ class ItemGroup extends React.Component {
         const items = this.props.items;
         if (!items) {
             return (
-                <div id="add-item">
-                    <button onClick={this.createItem}>Add Item</button>
+                <div id="details">
+                    <div id="add-item">
+                        <button onClick={this.createItem} className="lonely">
+                            Add Item
+                        </button>
+                    </div>
                 </div>
             );
         }
         return (
             <div id="details">
                 <ul id="list-items">
-                    {/* Render unchecked items */}
-                    {Object.keys(items)
-                        .filter(key => items[key].checked === false)
-                        .map(key => this.renderItems(key))}
-
-                    {/* Render checked items */}
-                    {Object.keys(items)
-                        .filter(key => items[key].checked === true)
-                        .map(key => this.renderItems(key))}
+                    {Object.keys(items).map(this.renderItems)}
                 </ul>
                 <div id="add-item">
                     <button onClick={this.createItem}>Add Item</button>
@@ -54,15 +50,14 @@ class ItemGroup extends React.Component {
 
 export default ItemGroup;
 
-// NOTE: How items were rendered without regard
-//       for checked status:
+// NOTE: Rendering unchecked before checked items:
 
-// Object.keys(items).map(key => (
-//     <Item
-//         value={`${items[key].text}`}
-//         checked={items[key].checked}
-//         key={key}
-//         cbkey={`cb${key}`}
-//         txtkey={`txt${key}`}
-//     />
-// ));
+// {/* Render unchecked items */}
+// {Object.keys(items)
+//     .filter(key => items[key].checked === false)
+//     .map(key => this.renderItems(key))}
+
+// {/* Render checked items */}
+// {Object.keys(items)
+//     .filter(key => items[key].checked === true)
+//     .map(key => this.renderItems(key))}

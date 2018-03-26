@@ -23,16 +23,18 @@ class Item extends React.Component {
                 <input
                     type="checkbox"
                     checked={this.props.checked}
-                    key={this.props.cbkey}
+                    // key={this.props.cbkey}
                     onChange={this.handleCheckboxChange}
                 />
                 <input
                     className="item-input"
                     type="text"
                     value={this.props.value}
-                    key={this.props.txtkey}
+                    // key={this.props.txtkey}
                     onChange={this.handleTextChange}
+                    autoFocus={this.props.value === ""}
                 />
+                <span className="delete">&times;</span>
             </li>
         );
     }

@@ -59,7 +59,7 @@ class ItemGroup extends React.Component {
 
 export default ItemGroup;
 
-// NOTE: Rendering unchecked before checked items:
+// NOTE: Rendering unchecked before checked items (sorting is bad though):
 
 // {/* Render unchecked items */}
 // {Object.keys(items)

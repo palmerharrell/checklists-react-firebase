@@ -7,7 +7,11 @@ import base from "../base";
 
 class App extends React.Component {
     state = {
-        listData: {}
+        listData: {},
+        flags: {
+            addingList: false,
+            renamingList: false
+        }
     };
 
     componentDidMount() {
@@ -29,6 +33,14 @@ class App extends React.Component {
         }
     }
 
+    displayModal = modalType => {
+        const flags = { ...this.state.flags };
+        flags[modalType] = true;
+        this.setState({
+            flags
+        });
+    };
+
     loadSampleLists = () => {
         this.setState({
             listData: sampleLists.listData
@@ -43,27 +55,62 @@ class App extends React.Component {
         });
     };
 
-    // TODO: addList
-    addList = list => {
-        const listData = { ...this.state.listData };
-        if (!listData.lists) {
-            listData.lists = {};
+    // TODO: addList: change this to only run on clicking Add button
+    addList = e => {
+        if (e.key === "Enter") {
+            const list = {
+                name: e.currentTarget.value,
+                items: {}
+            };
+
+            const listData = { ...this.state.listData };
+            const flags = { ...this.state.flags };
+            if (!listData.lists) {
+                listData.lists = {};
+            }
+            const newListKey = `list${Date.now()}`;
+            listData.lists[newListKey] = list;
+            listData.activeList = newListKey;
+            flags.addingList = false;
+            this.setState({
+                listData,
+                flags
+            });
         }
-        const newListKey = `list${Date.now()}`;
-        listData.lists[newListKey] = list;
-        listData.activeList = newListKey;
+    };
+
+    // TODO: Ask if user really wants to delete list and all of its items
+    deleteList = () => {
+        const { params } = this.props.match;
+        const listData = { ...this.state.listData };
+        const activeList = this.state.listData.activeList;
+
+        // Find first list that doesn't match activeList and set to activeList
+        const newActiveList = Object.keys(listData.lists).find(key => {
+            return key !== activeList;
+        });
+
+        // Delete from state if local, set to null if on Firebase
+        if (params.listsId === "demo") {
+            delete listData.lists[activeList];
+        } else {
+            listData.lists[activeList] = null;
+        }
+        // If only remaining list was deleted, set activeList to null
+        listData.activeList = newActiveList || null;
         this.setState({
             listData
         });
     };
 
-    // TODO: deleteList
-    deleteList = listId => {
-        console.log("listId: " + listId);
+    // TODO: renameList
+    renameList = () => {
+        // rename list
     };
 
     addItem = listId => {
         const listData = { ...this.state.listData };
+
         if (!listData.lists[listId].items) {
             listData.lists[listId].items = {};
         }
@@ -87,6 +134,7 @@ class App extends React.Component {
     deleteItem = (key, listId) => {
         const { params } = this.props.match;
         const listData = { ...this.state.listData };
+
         // Delete from state if local, set to null if on Firebase
         if (params.listsId === "demo") {
             delete listData.lists[listId].items[key];
@@ -99,6 +147,25 @@ class App extends React.Component {
     };
 
     render() {
+        if (this.state.flags.addingList) {
+            return (
+                <Fragment>
+                    <Header headerText="CheckLists" />
+                    <div id="new-list-dialog" className="">
+                        {/* TODO: Add a X to cancel */}
+                        <p>List Name</p>
+                        <input
+                            type="text"
+                            name="new-list"
+                            id="new-list-input"
+                            onKeyPress={this.addList}
+                            autoFocus
+                        />
+                        <button>Add</button>
+                    </div>
+                </Fragment>
+            );
+        }
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
         let activeListItems = {};
@@ -111,7 +178,9 @@ class App extends React.Component {
                 <div id="content">
                     <ListGroup
                         addList={this.addList}
+                        displayModal={this.displayModal}
                         setActiveList={this.setActiveList}
+                        deleteList={this.deleteList}
                         listState={listData}
                     />
                     <ItemGroup

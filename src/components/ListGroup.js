@@ -2,13 +2,8 @@ import React from "react";
 import List from "./List";
 
 class ListGroup extends React.Component {
-    //TODO: createList: ask for name of new list?
     createList = () => {
-        const list = {
-            name: "New List",
-            items: {}
-        };
-        this.props.addList(list);
+        this.props.displayModal("addingList");
     };
 
     render() {
@@ -36,7 +31,12 @@ class ListGroup extends React.Component {
                         <span className="btn-rename-list">
                             <button>Rename List</button>
                         </span>
-                        <button className="btn-delete-list">Delete List</button>
+                        <button
+                            className="btn-delete-list"
+                            onClick={this.props.deleteList}
+                        >
+                            Delete List
+                        </button>
                     </div>
                 </div>
             </div>

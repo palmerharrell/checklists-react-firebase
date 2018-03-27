@@ -9,6 +9,7 @@ class App extends React.Component {
     state = {
         listData: {},
         flags: {
+            listAdded: false,
             addingList: false,
             renamingList: false
         }
@@ -23,6 +24,13 @@ class App extends React.Component {
                 context: this,
                 state: "listData"
             });
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.state.flags.listAdded) {
+            // Add a new blank item to the new list
+            this.addItem(this.state.listData.activeList);
         }
     }
 
@@ -55,7 +63,7 @@ class App extends React.Component {
         });
     };
 
-    // TODO: addList: change this to only run on clicking Add button
+    // TODO: addList: change this to only run on clicking "Add" button
     addList = e => {
         if (e.key === "Enter") {
             const list = {
@@ -72,6 +80,7 @@ class App extends React.Component {
             listData.lists[newListKey] = list;
             listData.activeList = newListKey;
             flags.addingList = false;
+            flags.listAdded = true;
             this.setState({
                 listData,
                 flags
@@ -110,6 +119,7 @@ class App extends React.Component {
 
     addItem = listId => {
         const listData = { ...this.state.listData };
+        const flags = { ...this.state.flags };
 
         if (!listData.lists[listId].items) {
             listData.lists[listId].items = {};
@@ -118,8 +128,10 @@ class App extends React.Component {
             text: "",
             checked: false
         };
+        flags.listAdded = false;
         this.setState({
-            listData
+            listData,
+            flags
         });
     };
 

@@ -29,11 +29,16 @@ class ListGroup extends React.Component {
                     </div>
                     <div className="btngrp-edit-list">
                         <span className="btn-rename-list">
-                            <button>Rename List</button>
+                            <button disabled={activeList == null}>
+                                Rename List
+                            </button>
                         </span>
                         <button
                             className="btn-delete-list"
                             onClick={this.props.deleteList}
+                            // == is true here for both null and undefined
+                            // === would not catch undefined
+                            disabled={activeList == null}
                         >
                             Delete List
                         </button>

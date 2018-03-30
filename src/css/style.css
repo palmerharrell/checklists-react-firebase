@@ -11,8 +11,10 @@ html {
 }
 
 #header {
-    background-color: rgb(138, 153, 197);
-    color: whitesmoke;
+    /* background-color: rgb(138, 153, 197); */
+    background-color: lightsteelblue;
+    /* color: whitesmoke; */
+    color: #00699b;
     text-align: center;
     height: 70px;
     position: fixed;
@@ -47,7 +49,8 @@ li {
 }
 
 #details {
-    border-top: 3px solid rgb(138, 153, 197);
+    /* border-top: 3px solid rgb(138, 153, 197); */
+    border-top: 3px solid lightsteelblue;
 }
 
 .list-names {
@@ -92,7 +95,9 @@ li {
 }
 
 .selected-list {
-    background-color: lightblue;
+    /* background-color: lightblue; */
+    background-color: #00699b;
+    color: white;
 }
 
 #new-list-dialog {
@@ -126,6 +131,13 @@ li {
 
 .lonely {
     margin-top: 14px;
+}
+
+#logout {
+    z-index: 2;
+    position: fixed;
+    top: 20px;
+    right: 10px;
 }
 
 /* Desktop Style */
@@ -168,7 +180,8 @@ li {
         margin: 0;
         width: auto;
         font-size: inherit;
-        border-right: 2px solid rgb(138, 153, 197);
+        /* border-right: 2px solid rgb(138, 153, 197); */
+        border-right: 2px solid lightsteelblue;
     }
 
     #new-list-dialog p {
@@ -180,8 +193,10 @@ li {
         margin-right: 5px;
         padding-top: 10px;
         padding-bottom: 10px;
-        border-right: 2px solid rgb(138, 153, 197);
-        border-bottom: 2px solid rgb(138, 153, 197);
+        /* border-right: 2px solid rgb(138, 153, 197); */
+        border-right: 2px solid lightsteelblue;
+        /* border-bottom: 2px solid rgb(138, 153, 197); */
+        border-bottom: 2px solid lightsteelblue;
     }
 
     .btn-rename-list {
@@ -191,5 +206,9 @@ li {
 
     .lonely {
         margin-top: 20px;
+    }
+
+    #logout {
+        top: 25px;
     }
 }

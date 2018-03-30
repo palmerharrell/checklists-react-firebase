@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
+import firebase from "firebase";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
-import base from "../base";
+import base, { firebaseApp } from "../base";
 
 class App extends React.Component {
     state = {
@@ -12,14 +13,31 @@ class App extends React.Component {
             listAdded: false,
             addingList: false,
             renamingList: false
-        }
+        },
+        uid: "demo",
+        owner: null
     };
+
+    constructor(props) {
+        super(props);
+        // Set owner to listsId in URL
+        this.state.owner = this.props.match.params.listsId;
+        // Set uid to authorized uid, if it exists
+        if (this.props.location.state) {
+            this.state.uid = this.props.location.state.uid;
+        }
+    }
 
     componentDidMount() {
         const { params } = this.props.match;
         if (params.listsId === "demo") {
             this.loadSampleLists();
         } else {
+            // Check if user is logged in before syncing with Firebase
+            // redirect back to login, if they are not
+            if (this.state.uid !== this.state.owner) {
+                this.props.history.push("/");
+            }
             this.ref = base.syncState(`${params.listsId}/listData`, {
                 context: this,
                 state: "listData"
@@ -159,6 +177,13 @@ class App extends React.Component {
     };
 
     render() {
+        // Check if user is logged in and owns this listData
+        // (This isn't really necessary since componentDidMount
+        // redirects back to login if uid doesn't match owner)
+        if (this.state.uid !== this.state.owner) {
+            return <p>User ID does not match Owner</p>;
+        }
+
         if (this.state.flags.addingList) {
             return (
                 <Fragment>
@@ -178,6 +203,7 @@ class App extends React.Component {
                 </Fragment>
             );
         }
+
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
         let activeListItems = {};
@@ -187,6 +213,9 @@ class App extends React.Component {
         return (
             <Fragment>
                 <Header headerText="CheckLists" />
+                <div id="logout">
+                    <button>Logout</button>
+                </div>
                 <div id="content">
                     <ListGroup
                         addList={this.addList}

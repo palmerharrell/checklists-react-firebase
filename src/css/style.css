@@ -22,24 +22,21 @@ html {
     width: 100%;
 }
 
-ul {
-    /* padding: 0; */
-    padding-left: 5px;
-    padding-right: 5px;
+#logout {
+    z-index: 2;
+    position: fixed;
+    top: 20px;
+    right: 10px;
 }
-
-li {
-    list-style: none;
-    padding: 5px;
-}
-
-/* #main {
-    margin: 70px auto 30px auto;
-} */
 
 #content {
     margin: 70px auto 30px auto;
 }
+
+/* *************************************** */
+/*               LISTS PANEL               */
+/* *************************************** */
+/* Move most of this to desktop.css after making list modal */
 
 #lists {
     padding-bottom: 14px;
@@ -48,33 +45,49 @@ li {
     text-align: center;
 }
 
-#details {
-    /* border-top: 3px solid rgb(138, 153, 197); */
-    border-top: 3px solid lightsteelblue;
-}
-
-.list-names {
+#list-names {
     margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     text-align: center;
 }
 
 .list-name {
     cursor: pointer;
     display: inline-block;
+    list-style: none;
     margin-left: 5px;
     margin-right: 5px;
+    padding: 5px;
     width: 30%;
     font-size: 1.5em;
 }
 
-.list-buttons button {
-    margin: 0 10px;
+.selected-list {
+    /* background-color: lightblue; */
+    background-color: #00699b;
+    color: white;
+}
+
+/* *************************************** */
+/*               ITEMS PANEL               */
+/* *************************************** */
+#details {
+    /* border-top: 3px solid rgb(138, 153, 197); */
+    border-top: 3px solid lightsteelblue;
+}
+
+#list-items {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .item {
+    list-style: none;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 1px;
+    padding-bottom: 5px;
     margin-bottom: 5px;
 }
 
@@ -94,10 +107,21 @@ li {
     text-align: center;
 }
 
-.selected-list {
-    /* background-color: lightblue; */
-    background-color: #00699b;
-    color: white;
+.lonely {
+    margin-top: 14px;
+}
+
+/* *************************************** */
+/*                 DIALOGS                 */
+/* *************************************** */
+.backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 #new-list-dialog {
@@ -116,12 +140,6 @@ li {
     filter: drop-shadow(10px 8px 4px rgba(92, 101, 131, 0.7));
 }
 
-#new-list-title {
-    font-size: 1.5em;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
 #cancel {
     position: absolute;
     top: -8px;
@@ -133,23 +151,13 @@ li {
     cursor: pointer;
 }
 
+#new-list-title {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 #new-list-dialog input {
     width: 85%;
     margin-bottom: 20px;
-}
-
-/* Is this used anywhere? */
-.hidden {
-    display: none;
-}
-
-.lonely {
-    margin-top: 14px;
-}
-
-#logout {
-    z-index: 2;
-    position: fixed;
-    top: 20px;
-    right: 10px;
 }

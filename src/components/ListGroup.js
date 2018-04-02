@@ -10,7 +10,7 @@ class ListGroup extends React.Component {
         const { activeList, lists } = this.props.listState;
         return (
             <div id="lists">
-                <ul className="list-names">
+                <ul id="list-names">
                     {activeList !== undefined && lists !== undefined
                         ? Object.keys(lists).map(key => (
                               <List
@@ -23,18 +23,18 @@ class ListGroup extends React.Component {
                           ))
                         : null}
                 </ul>
-                <div className="list-buttons">
-                    <div className="btngrp-new-list">
+                <div id="list-buttons">
+                    <div id="btngrp-new-list">
                         <button onClick={this.createList}>New List</button>
                     </div>
-                    <div className="btngrp-edit-list">
-                        <span className="btn-rename-list">
+                    <div id="btngrp-edit-list">
+                        <span id="btn-rename-list">
                             <button disabled={activeList == null}>
                                 Rename List
                             </button>
                         </span>
                         <button
-                            className="btn-delete-list"
+                            id="btn-delete-list"
                             onClick={this.props.deleteList}
                             // == is true here for both null and undefined
                             // === would not catch undefined

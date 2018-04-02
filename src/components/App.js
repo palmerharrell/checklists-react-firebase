@@ -30,7 +30,8 @@ class App extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.match;
-        if (params.listsId === "demo") {
+        // if (params.listsId === "demo") {
+        if (this.state.uid === "demo") {
             this.loadSampleLists();
         } else {
             // Check if user is logged in before syncing with Firebase
@@ -234,32 +235,6 @@ class App extends React.Component {
             return <p>User ID does not match Owner</p>;
         }
 
-        if (this.state.flags.addingList) {
-            return (
-                <Fragment>
-                    <Header headerText="CheckLists" />
-                    <div id="new-list-dialog" className="">
-                        <span id="cancel" onClick={this.addList}>
-                            &times;
-                        </span>
-                        <p id="new-list-title">List Name</p>
-                        <input
-                            type="text"
-                            name="text-input"
-                            id="new-list-input"
-                            onKeyPress={this.addList}
-                            autoFocus
-                        />
-                        <button name="add" onClick={this.addList}>
-                            Add
-                        </button>
-                    </div>
-                </Fragment>
-            );
-        }
-
-        // TODO: render modal if renamingList flag is true
-
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
         let activeListItems = {};
@@ -269,6 +244,29 @@ class App extends React.Component {
         return (
             <Fragment>
                 <Header headerText="CheckLists" />
+                {/* New List Dialog */}
+                {this.state.flags.addingList ? (
+                    <div className="backdrop">
+                        <div id="new-list-dialog" className="">
+                            <span id="cancel" onClick={this.addList}>
+                                &times;
+                            </span>
+                            <p id="new-list-title">List Name</p>
+                            <input
+                                type="text"
+                                name="text-input"
+                                id="new-list-input"
+                                onKeyPress={this.addList}
+                                autoFocus
+                            />
+                            <button name="add" onClick={this.addList}>
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                ) : null}
+                {/* END New List Dialog */}
+                {/* TODO: render Rename List Dialog if renamingList flag is true */}
                 <div id="logout">
                     <button onClick={this.logout}>Logout</button>
                 </div>

@@ -100,24 +100,34 @@ class App extends React.Component {
                     e.key === "Enter"
                         ? e.currentTarget.value
                         : e.currentTarget.previousSibling.value;
-                const list = {
-                    name: txtValue,
-                    items: {}
-                };
-                const listData = { ...this.state.listData };
-                const flags = { ...this.state.flags };
-                if (!listData.lists) {
-                    listData.lists = {};
+
+                if (txtValue !== "") {
+                    const list = {
+                        name: txtValue,
+                        items: {}
+                    };
+                    const listData = { ...this.state.listData };
+                    const flags = { ...this.state.flags };
+                    if (!listData.lists) {
+                        listData.lists = {};
+                    }
+                    const newListKey = `list${Date.now()}`;
+                    listData.lists[newListKey] = list;
+                    listData.activeList = newListKey;
+                    flags.addingList = false;
+                    flags.listAdded = true;
+                    this.setState({
+                        listData,
+                        flags
+                    });
+                } else {
+                    // Cancel instead of creating a list with no title
+                    const flags = { ...this.state.flags };
+                    flags.addingList = false;
+                    this.setState({
+                        flags
+                    });
                 }
-                const newListKey = `list${Date.now()}`;
-                listData.lists[newListKey] = list;
-                listData.activeList = newListKey;
-                flags.addingList = false;
-                flags.listAdded = true;
-                this.setState({
-                    listData,
-                    flags
-                });
             }
         } else {
             // If name is undefined, this was called by cancel button
@@ -127,6 +137,11 @@ class App extends React.Component {
                 flags
             });
         }
+    };
+
+    // TODO: renameList
+    renameList = () => {
+        // rename list
     };
 
     // TODO: Ask if user really wants to delete list and all of its items
@@ -151,11 +166,6 @@ class App extends React.Component {
         this.setState({
             listData
         });
-    };
-
-    // TODO: renameList
-    renameList = () => {
-        // rename list
     };
 
     addItem = listId => {

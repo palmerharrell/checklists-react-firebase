@@ -90,28 +90,20 @@ class App extends React.Component {
         });
     };
 
-    // TODO: addList: on Enter or Add button, cancel on X button
     addList = e => {
-        // NOTE: IN PROGRESS (combine Enter and Button click)
         // If this was called by anything but the cancel button
-        // if (e.currentTarget.name) {
-        //     // Enter key or Add button. Don't do anything on other keypresses
-        //     if (e.key === "Enter" || e.currentTarget.name === "add") {
-        //         const list = {
-        //             name: e.currentTarget.value,
-        //             items: {}
-        //         };
-        //     }
-        // }
-
-        // If key is pressed in text input:
-        if (e.currentTarget.name === "text-input") {
-            if (e.key === "Enter") {
+        if (e.currentTarget.name) {
+            // Enter key or Add button. Don't do anything on other keypresses
+            if (e.key === "Enter" || e.currentTarget.name === "add") {
+                // Get text input value
+                const txtValue =
+                    e.key === "Enter"
+                        ? e.currentTarget.value
+                        : e.currentTarget.previousSibling.value;
                 const list = {
-                    name: e.currentTarget.value,
+                    name: txtValue,
                     items: {}
                 };
-
                 const listData = { ...this.state.listData };
                 const flags = { ...this.state.flags };
                 if (!listData.lists) {
@@ -127,26 +119,6 @@ class App extends React.Component {
                     flags
                 });
             }
-        } else if (e.currentTarget.name === "add") {
-            const list = {
-                name: e.currentTarget.previousSibling.value,
-                items: {}
-            };
-
-            const listData = { ...this.state.listData };
-            const flags = { ...this.state.flags };
-            if (!listData.lists) {
-                listData.lists = {};
-            }
-            const newListKey = `list${Date.now()}`;
-            listData.lists[newListKey] = list;
-            listData.activeList = newListKey;
-            flags.addingList = false;
-            flags.listAdded = true;
-            this.setState({
-                listData,
-                flags
-            });
         } else {
             // If name is undefined, this was called by cancel button
             const flags = { ...this.state.flags };
@@ -247,15 +219,14 @@ class App extends React.Component {
                 {/* New List Dialog */}
                 {this.state.flags.addingList ? (
                     <div className="backdrop">
-                        <div id="new-list-dialog" className="">
+                        <div id="list-dialog">
                             <span id="cancel" onClick={this.addList}>
                                 &times;
                             </span>
-                            <p id="new-list-title">List Name</p>
+                            <p id="list-dialog-title">List Name</p>
                             <input
                                 type="text"
                                 name="text-input"
-                                id="new-list-input"
                                 onKeyPress={this.addList}
                                 autoFocus
                             />
@@ -266,7 +237,32 @@ class App extends React.Component {
                     </div>
                 ) : null}
                 {/* END New List Dialog */}
-                {/* TODO: render Rename List Dialog if renamingList flag is true */}
+                {/* Rename List Dialog */}
+                {this.state.flags.renamingList ? (
+                    <div className="backdrop">
+                        <div id="list-dialog">
+                            <span id="cancel" onClick={this.renameList}>
+                                &times;
+                            </span>
+                            <p id="list-dialog-title">Rename List</p>
+                            <input
+                                type="text"
+                                name="text-input"
+                                onKeyPress={this.renameList}
+                                defaultValue={
+                                    this.state.listData.lists[
+                                        this.state.listData.activeList
+                                    ].name
+                                }
+                                autoFocus
+                            />
+                            <button name="change" onClick={this.renameList}>
+                                Change
+                            </button>
+                        </div>
+                    </div>
+                ) : null}
+                {/* END Rename List Dialog */}
                 <div id="logout">
                     <button onClick={this.logout}>Logout</button>
                 </div>

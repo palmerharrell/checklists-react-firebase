@@ -6,6 +6,10 @@ class ListGroup extends React.Component {
         this.props.displayModal("addingList");
     };
 
+    renameList = () => {
+        this.props.displayModal("renamingList");
+    };
+
     render() {
         const { activeList, lists } = this.props.listState;
         return (
@@ -29,7 +33,10 @@ class ListGroup extends React.Component {
                     </div>
                     <div id="btngrp-edit-list">
                         <span id="btn-rename-list">
-                            <button disabled={activeList == null}>
+                            <button
+                                onClick={this.renameList}
+                                disabled={activeList == null}
+                            >
                                 Rename List
                             </button>
                         </span>

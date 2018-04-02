@@ -1,7 +1,7 @@
 import React from "react";
 
 class List extends React.Component {
-    changeActiveList = e => {
+    changeActiveList = () => {
         this.props.setActiveList(this.props.index);
     };
 

@@ -124,7 +124,7 @@ html {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-#new-list-dialog {
+#list-dialog {
     position: fixed;
     width: 280px;
     left: 50%;
@@ -151,13 +151,13 @@ html {
     cursor: pointer;
 }
 
-#new-list-title {
+#list-dialog-title {
     font-size: 1.5em;
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-#new-list-dialog input {
+#list-dialog input {
     width: 85%;
     margin-bottom: 20px;
 }

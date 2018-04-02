@@ -102,29 +102,43 @@ li {
 
 #new-list-dialog {
     position: fixed;
-    width: 250px;
+    width: 280px;
     left: 50%;
     top: 150px;
-    margin-left: -125px;
+    margin-left: -140px;
     border: 5px solid rgb(138, 153, 197);
     text-align: center;
     padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
     z-index: 1;
     background-color: white;
     filter: drop-shadow(10px 8px 4px rgba(92, 101, 131, 0.7));
 }
 
-#new-list-dialog p {
+#new-list-title {
     font-size: 1.5em;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 
+#cancel {
+    position: absolute;
+    top: -8px;
+    left: 90%;
+    width: 25px;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
 #new-list-dialog input {
-    width: 80%;
+    width: 85%;
     margin-bottom: 20px;
 }
 
+/* Is this used anywhere? */
 .hidden {
     display: none;
 }

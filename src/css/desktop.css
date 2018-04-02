@@ -42,8 +42,12 @@
         border-right: 2px solid lightsteelblue;
     }
 
-    #new-list-dialog p {
+    #new-list-title {
         font-size: inherit;
+    }
+
+    #cancel {
+        /* font-size: inherit; */
     }
 
     .btngrp-new-list {

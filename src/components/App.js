@@ -4,7 +4,7 @@ import Header from "./Header";
 import ListGroup from "./ListGroup";
 import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
-import base, { firebaseApp } from "../base";
+import base from "../base";
 
 class App extends React.Component {
     state = {
@@ -89,11 +89,46 @@ class App extends React.Component {
         });
     };
 
-    // TODO: addList: change this to only run on clicking "Add" button
+    // TODO: addList: on Enter or Add button, cancel on X button
     addList = e => {
-        if (e.key === "Enter") {
+        // NOTE: IN PROGRESS (combine Enter and Button click)
+        // If this was called by anything but the cancel button
+        // if (e.currentTarget.name) {
+        //     // Enter key or Add button. Don't do anything on other keypresses
+        //     if (e.key === "Enter" || e.currentTarget.name === "add") {
+        //         const list = {
+        //             name: e.currentTarget.value,
+        //             items: {}
+        //         };
+        //     }
+        // }
+
+        // If key is pressed in text input:
+        if (e.currentTarget.name === "text-input") {
+            if (e.key === "Enter") {
+                const list = {
+                    name: e.currentTarget.value,
+                    items: {}
+                };
+
+                const listData = { ...this.state.listData };
+                const flags = { ...this.state.flags };
+                if (!listData.lists) {
+                    listData.lists = {};
+                }
+                const newListKey = `list${Date.now()}`;
+                listData.lists[newListKey] = list;
+                listData.activeList = newListKey;
+                flags.addingList = false;
+                flags.listAdded = true;
+                this.setState({
+                    listData,
+                    flags
+                });
+            }
+        } else if (e.currentTarget.name === "add") {
             const list = {
-                name: e.currentTarget.value,
+                name: e.currentTarget.previousSibling.value,
                 items: {}
             };
 
@@ -109,6 +144,13 @@ class App extends React.Component {
             flags.listAdded = true;
             this.setState({
                 listData,
+                flags
+            });
+        } else {
+            // If name is undefined, this was called by cancel button
+            const flags = { ...this.state.flags };
+            flags.addingList = false;
+            this.setState({
                 flags
             });
         }
@@ -197,16 +239,20 @@ class App extends React.Component {
                 <Fragment>
                     <Header headerText="CheckLists" />
                     <div id="new-list-dialog" className="">
-                        {/* TODO: Add a X to cancel */}
-                        <p>List Name</p>
+                        <span id="cancel" onClick={this.addList}>
+                            &times;
+                        </span>
+                        <p id="new-list-title">List Name</p>
                         <input
                             type="text"
-                            name="new-list"
+                            name="text-input"
                             id="new-list-input"
                             onKeyPress={this.addList}
                             autoFocus
                         />
-                        <button>Add</button>
+                        <button name="add" onClick={this.addList}>
+                            Add
+                        </button>
                     </div>
                 </Fragment>
             );

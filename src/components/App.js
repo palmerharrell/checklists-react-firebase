@@ -46,6 +46,9 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
+        if (this.state.uid !== this.state.owner) {
+            this.props.history.push("/");
+        }
         if (this.state.flags.listAdded) {
             // Add a new blank item to the new list
             this.addItem(this.state.listData.activeList);
@@ -58,6 +61,11 @@ class App extends React.Component {
             base.removeBinding(this.ref);
         }
     }
+
+    logout = async () => {
+        await firebase.auth().signOut();
+        this.setState({ uid: null });
+    };
 
     displayModal = modalType => {
         const flags = { ...this.state.flags };
@@ -204,6 +212,8 @@ class App extends React.Component {
             );
         }
 
+        // TODO: render modal if renamingList flag is true
+
         const listData = this.state.listData;
         const activeList = listData.activeList || "";
         let activeListItems = {};
@@ -214,7 +224,7 @@ class App extends React.Component {
             <Fragment>
                 <Header headerText="CheckLists" />
                 <div id="logout">
-                    <button>Logout</button>
+                    <button onClick={this.logout}>Logout</button>
                 </div>
                 <div id="content">
                     <ListGroup

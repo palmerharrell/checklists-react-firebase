@@ -139,3 +139,76 @@ li {
     top: 20px;
     right: 10px;
 }
+
+/* Desktop Style */
+@media (min-width: 769px) {
+    /* #main {
+        width: 80%;
+        margin: 100px auto 30px auto;
+    } */
+
+    #content {
+        width: 80%;
+        margin: 100px auto 30px auto;
+    }
+
+    #lists {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: -5px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 200px;
+    }
+
+    #details {
+        display: inline-block;
+        vertical-align: top;
+        width: 66%;
+        border-top: none;
+        /* border-left: 2px solid rgb(138, 153, 197); */
+    }
+
+    .list-names {
+        /* margin-bottom: 16px; */
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .list-name {
+        display: block;
+        margin: 0;
+        width: auto;
+        font-size: inherit;
+        /* border-right: 2px solid rgb(138, 153, 197); */
+        border-right: 2px solid lightsteelblue;
+    }
+
+    #new-list-dialog p {
+        font-size: inherit;
+    }
+
+    .btngrp-new-list {
+        margin-bottom: 25px;
+        margin-right: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /* border-right: 2px solid rgb(138, 153, 197); */
+        border-right: 2px solid lightsteelblue;
+        /* border-bottom: 2px solid rgb(138, 153, 197); */
+        border-bottom: 2px solid lightsteelblue;
+    }
+
+    .btn-rename-list {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .lonely {
+        margin-top: 20px;
+    }
+
+    #logout {
+        top: 25px;
+    }
+}

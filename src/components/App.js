@@ -154,7 +154,7 @@ class App extends React.Component {
         const newActiveList = Object.keys(listData.lists).find(key => {
             return key !== activeList;
         });
-
+        console.log("newActiveList: " + newActiveList);
         // Delete from state if local, set to null if on Firebase
         if (params.listsId === "demo") {
             delete listData.lists[activeList];
@@ -211,16 +211,22 @@ class App extends React.Component {
 
     render() {
         // Check if user is logged in and owns this listData
-        // (This isn't really necessary since componentDidMount
+        // (Not sure if this is necessary since componentDidMount
         // redirects back to login if uid doesn't match owner)
         if (this.state.uid !== this.state.owner) {
             return <p>User ID does not match Owner</p>;
         }
 
         const listData = this.state.listData;
-        const activeList = listData.activeList || "";
+        let activeList = listData.activeList || "";
         let activeListItems = {};
         if (activeList !== "") {
+            // Hack to fix demo crashing after "Groceries" is deleted,
+            // logging out, and loading sample data again...
+            if (listData.lists[activeList] === undefined) {
+                window.location.reload(true);
+            }
+            // END hack
             activeListItems = listData.lists[activeList].items;
         }
         return (

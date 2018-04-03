@@ -4,7 +4,11 @@ import base, { firebaseApp } from "../base";
 
 class Login extends React.Component {
     loadDemo = () => {
-        this.props.history.push("/lists/demo");
+        // this.props.history.push("/lists/demo");
+        this.props.history.push({
+            pathname: "/lists/demo",
+            state: { uid: "demo" }
+        });
     };
 
     authHandler = async authData => {

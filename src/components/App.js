@@ -139,9 +139,46 @@ class App extends React.Component {
         }
     };
 
-    // TODO: renameList
-    renameList = () => {
-        // rename list
+    renameList = e => {
+        // If this was called by anything but the cancel button
+        if (e.currentTarget.name) {
+            // Enter key or Change button. Don't do anything on other keypresses
+            if (e.key === "Enter" || e.currentTarget.name === "change") {
+                // Get text input value
+                const txtValue =
+                    e.key === "Enter"
+                        ? e.currentTarget.value
+                        : e.currentTarget.previousSibling.value;
+
+                if (txtValue !== "") {
+                    // Rename current activeList
+                    const listData = { ...this.state.listData };
+                    const activeList = this.state.listData.activeList;
+                    const flags = { ...this.state.flags };
+
+                    listData.lists[activeList].name = txtValue;
+                    flags.renamingList = false;
+                    this.setState({
+                        listData,
+                        flags
+                    });
+                } else {
+                    // Cancel instead of giving list a blank title
+                    const flags = { ...this.state.flags };
+                    flags.renamingList = false;
+                    this.setState({
+                        flags
+                    });
+                }
+            }
+        } else {
+            // If name is undefined, this was called by cancel button
+            const flags = { ...this.state.flags };
+            flags.renamingList = false;
+            this.setState({
+                flags
+            });
+        }
     };
 
     // TODO: Ask if user really wants to delete list and all of its items

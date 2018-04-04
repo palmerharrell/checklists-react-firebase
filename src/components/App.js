@@ -12,7 +12,8 @@ class App extends React.Component {
         flags: {
             listAdded: false,
             addingList: false,
-            renamingList: false
+            renamingList: false,
+            deletingList: false
         },
         uid: "demo",
         owner: null
@@ -181,28 +182,38 @@ class App extends React.Component {
         }
     };
 
-    // TODO: Ask if user really wants to delete list and all of its items
-    deleteList = () => {
-        const { params } = this.props.match;
-        const listData = { ...this.state.listData };
-        const activeList = this.state.listData.activeList;
+    deleteList = e => {
+        if (e.currentTarget.name === "yes") {
+            const { params } = this.props.match;
+            const flags = { ...this.state.flags };
+            const listData = { ...this.state.listData };
+            const activeList = this.state.listData.activeList;
 
-        // Find first list that doesn't match activeList and set to activeList
-        const newActiveList = Object.keys(listData.lists).find(key => {
-            return key !== activeList;
-        });
-        console.log("newActiveList: " + newActiveList);
-        // Delete from state if local, set to null if on Firebase
-        if (params.listsId === "demo") {
-            delete listData.lists[activeList];
+            // Find first list that doesn't match activeList and set to activeList
+            const newActiveList = Object.keys(listData.lists).find(key => {
+                return key !== activeList;
+            });
+            // Delete from state if local, set to null if on Firebase
+            if (params.listsId === "demo") {
+                delete listData.lists[activeList];
+            } else {
+                listData.lists[activeList] = null;
+            }
+            // If only remaining list was deleted, set activeList to null
+            listData.activeList = newActiveList || null;
+            flags.deletingList = false;
+            this.setState({
+                listData,
+                flags
+            });
         } else {
-            listData.lists[activeList] = null;
+            // Cancel delete list
+            const flags = { ...this.state.flags };
+            flags.deletingList = false;
+            this.setState({
+                flags
+            });
         }
-        // If only remaining list was deleted, set activeList to null
-        listData.activeList = newActiveList || null;
-        this.setState({
-            listData
-        });
     };
 
     addItem = listId => {
@@ -316,6 +327,32 @@ class App extends React.Component {
                     </div>
                 ) : null}
                 {/* END Rename List Dialog */}
+                {/* Delete List Dialog */}
+                {this.state.flags.deletingList ? (
+                    <div className="backdrop">
+                        <div id="list-dialog">
+                            <span id="cancel" onClick={this.deleteList}>
+                                &times;
+                            </span>
+                            <p id="list-dialog-title">
+                                Delete{" "}
+                                {`"${
+                                    this.state.listData.lists[
+                                        this.state.listData.activeList
+                                    ].name
+                                }"`}?
+                            </p>
+
+                            <button name="no" onClick={this.deleteList}>
+                                NO
+                            </button>
+                            <button name="yes" onClick={this.deleteList}>
+                                YES
+                            </button>
+                        </div>
+                    </div>
+                ) : null}
+                {/* END Delete List Dialog */}
                 <div id="logout">
                     <button onClick={this.logout}>Logout</button>
                 </div>

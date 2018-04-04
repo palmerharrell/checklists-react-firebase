@@ -10,6 +10,10 @@ class ListGroup extends React.Component {
         this.props.displayModal("renamingList");
     };
 
+    deleteList = () => {
+        this.props.displayModal("deletingList");
+    };
+
     render() {
         const { activeList, lists } = this.props.listState;
         return (
@@ -42,7 +46,7 @@ class ListGroup extends React.Component {
                         </span>
                         <button
                             id="btn-delete-list"
-                            onClick={this.props.deleteList}
+                            onClick={this.deleteList}
                             // == is true here for both null and undefined
                             // === would not catch undefined
                             disabled={activeList == null}

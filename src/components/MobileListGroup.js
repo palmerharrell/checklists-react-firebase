@@ -1,7 +1,7 @@
 import React from "react";
 import List from "./List";
 
-class ListGroup extends React.Component {
+class MobileListGroup extends React.Component {
     createList = () => {
         this.props.displayModal("addingList");
     };
@@ -17,7 +17,7 @@ class ListGroup extends React.Component {
     render() {
         const { activeList, lists } = this.props.listState;
         return (
-            <div id="lists">
+            <div id="mlists">
                 <ul id="list-names">
                     {activeList !== undefined && lists !== undefined
                         ? Object.keys(lists).map(key => (
@@ -47,8 +47,6 @@ class ListGroup extends React.Component {
                         <button
                             id="btn-delete-list"
                             onClick={this.deleteList}
-                            // == is true here for both null and undefined
-                            // === would not catch undefined
                             disabled={activeList == null}
                         >
                             Delete List
@@ -59,4 +57,4 @@ class ListGroup extends React.Component {
         );
     }
 }
-export default ListGroup;
+export default MobileListGroup;

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import firebase from "firebase";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
+import MobileListGroup from "./MobileListGroup";
 import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
 import base from "../base";
@@ -13,7 +14,8 @@ class App extends React.Component {
             listAdded: false,
             addingList: false,
             renamingList: false,
-            deletingList: false
+            deletingList: false,
+            showMobileListMenu: false
         },
         uid: "demo",
         owner: null
@@ -70,11 +72,16 @@ class App extends React.Component {
     };
 
     displayModal = modalType => {
-        const flags = { ...this.state.flags };
-        flags[modalType] = true;
-        this.setState({
-            flags
-        });
+        if (typeof modalType === "object") {
+            console.log("mobile list name clicked");
+            // TODO: set showMobileListMenu flag to true
+        } else {
+            const flags = { ...this.state.flags };
+            flags[modalType] = true;
+            this.setState({
+                flags
+            });
+        }
     };
 
     loadSampleLists = () => {
@@ -284,7 +291,7 @@ class App extends React.Component {
                 {this.state.flags.addingList ? (
                     <div className="backdrop">
                         <div id="list-dialog">
-                            <span id="cancel" onClick={this.addList}>
+                            <span className="cancel" onClick={this.addList}>
                                 &times;
                             </span>
                             <p id="list-dialog-title">List Name</p>
@@ -305,7 +312,7 @@ class App extends React.Component {
                 {this.state.flags.renamingList ? (
                     <div className="backdrop">
                         <div id="list-dialog">
-                            <span id="cancel" onClick={this.renameList}>
+                            <span className="cancel" onClick={this.renameList}>
                                 &times;
                             </span>
                             <p id="list-dialog-title">Rename List</p>
@@ -331,16 +338,11 @@ class App extends React.Component {
                 {this.state.flags.deletingList ? (
                     <div className="backdrop">
                         <div id="list-dialog">
-                            <span id="cancel" onClick={this.deleteList}>
+                            <span className="cancel" onClick={this.deleteList}>
                                 &times;
                             </span>
                             <p id="list-dialog-title">
-                                Delete{" "}
-                                {`"${
-                                    this.state.listData.lists[
-                                        this.state.listData.activeList
-                                    ].name
-                                }"`}{" "}
+                                Delete {`"${listData.lists[activeList].name}"`}{" "}
                                 and all of its items?
                             </p>
 
@@ -362,10 +364,36 @@ class App extends React.Component {
                     </div>
                 ) : null}
                 {/* END Delete List Dialog */}
+                {/* Mobile List Names Dialog */}
+                {this.state.flags.showMobileListMenu ? (
+                    <div className="backdrop">
+                        <div id="mobile-lists">
+                            <MobileListGroup
+                                addList={this.addList}
+                                displayModal={this.displayModal}
+                                setActiveList={this.setActiveList}
+                                deleteList={this.deleteList}
+                                listState={listData}
+                            />
+                        </div>
+                    </div>
+                ) : null}
+                {/* TODO: set showMobileListMenu to false if list or buttons are 
+                clicked */}
+                {/* END Mobile List Names Dialog */}
                 <div id="logout">
                     <button onClick={this.logout}>Logout</button>
                 </div>
                 <div id="content">
+                    <div id="mobile-list-name" onClick={this.displayModal}>
+                        <p>
+                            {listData.lists
+                                ? listData.lists[activeList].name + " "
+                                : null}
+                            &#9660;
+                            {/* &or; */}
+                        </p>
+                    </div>
                     <ListGroup
                         addList={this.addList}
                         displayModal={this.displayModal}

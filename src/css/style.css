@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
+
 html {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -15,11 +17,18 @@ html {
     background-color: lightsteelblue;
     /* color: whitesmoke; */
     color: #00699b;
+    font-family: "Dancing Script", cursive;
     text-align: center;
     height: 70px;
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+#header h2 {
+    font-size: 2.2em;
+    /* font-weight: 100; */
+    margin-top: 14px;
 }
 
 #logout {
@@ -31,36 +40,91 @@ html {
 
 #content {
     margin: 70px auto 30px auto;
-}
-
-/* *************************************** */
-/*               LISTS PANEL               */
-/* *************************************** */
-/* Move most of this to desktop.css after making list modal */
-
-#lists {
-    padding-bottom: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
     text-align: center;
 }
 
+/* *************************************** */
+/*            MOBILE LISTS PANEL           */
+/* *************************************** */
+/* Some of this should be moved to desktop.css */
+#lists {
+    display: none;
+}
+
+#mobile-list-name {
+    color: white;
+    background-color: #00699b;
+    display: inline-block;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 3px solid #00699b;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#mobile-list-name p {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+#mobile-lists {
+    position: fixed;
+    width: 280px;
+    left: 50%;
+    top: 100px;
+    margin-left: -140px;
+    border: 5px solid rgb(138, 153, 197);
+    text-align: center;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    z-index: 1;
+    background-color: white;
+    filter: drop-shadow(10px 8px 4px rgba(92, 101, 131, 0.7));
+}
+
+/* #mlists {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 14px;
+    text-align: center;
+} */
+
 #list-names {
-    margin-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* margin-bottom: 5px; */
+    padding-left: 3px;
+    padding-right: 3px;
     text-align: center;
 }
 
 .list-name {
     cursor: pointer;
-    display: inline-block;
+    display: block;
     list-style: none;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 5px;
-    width: 30%;
+    margin: 0;
+    width: auto;
+    /* margin-left: 5px; */
+    /* margin-right: 5px; */
+    padding: 12px;
     font-size: 1.5em;
+}
+
+#btngrp-new-list {
+    margin-bottom: 20px;
+    /* margin-right: 5px; */
+    /* padding-top: 10px; */
+    padding-bottom: 20px;
+    /* border-top: 2px solid lightsteelblue; */
+    border-bottom: 2px solid lightsteelblue;
+}
+
+#btn-rename-list {
+    display: block;
+    margin-bottom: 10px;
 }
 
 .selected-list {
@@ -74,7 +138,7 @@ html {
 /* *************************************** */
 #details {
     /* border-top: 3px solid rgb(138, 153, 197); */
-    border-top: 3px solid lightsteelblue;
+    /* border-top: 3px solid lightsteelblue; */
 }
 
 #list-items {
@@ -85,19 +149,20 @@ html {
 .item {
     list-style: none;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 6px;
     padding-top: 1px;
     padding-bottom: 5px;
     margin-bottom: 5px;
 }
 
 .item-input {
-    width: 80%;
-    margin-left: 15px;
+    width: 78%;
+    margin-left: 17px;
+    margin-right: 2px;
 }
 
 .delete {
-    margin-left: 5px;
+    margin-left: 10px;
     padding-left: 5px;
     padding-right: 5px;
     cursor: pointer;
@@ -140,7 +205,7 @@ html {
     filter: drop-shadow(10px 8px 4px rgba(92, 101, 131, 0.7));
 }
 
-#cancel {
+.cancel {
     position: absolute;
     top: -8px;
     left: 90%;

@@ -1,5 +1,9 @@
 /* Desktop Style */
 @media (min-width: 769px) {
+    #header h2 {
+        font-weight: 100;
+    }
+
     #logout {
         top: 25px;
     }
@@ -12,24 +16,36 @@
     /* *************************************** */
     /*               LISTS PANEL               */
     /* *************************************** */
+    #mobile-list-name {
+        display: none;
+    }
+
+    /* #mlists {
+        display: none;
+    } */
+
     #lists {
         display: inline-block;
         vertical-align: top;
         margin-right: -5px;
         padding-left: 0;
         padding-right: 0;
+        padding-bottom: 14px;
         width: 200px;
+        text-align: center;
     }
 
     #list-names {
         /* margin-bottom: 16px; */
         margin-bottom: 0;
+        padding: 0;
         text-align: left;
     }
 
     .list-name {
         display: block;
         margin: 0;
+        padding: 5px;
         width: auto;
         font-size: inherit;
         /* border-right: 2px solid rgb(138, 153, 197); */
@@ -38,9 +54,10 @@
 
     #btngrp-new-list {
         margin-bottom: 25px;
-        margin-right: 5px;
+        margin-right: 0;
         padding-top: 10px;
         padding-bottom: 10px;
+        border-top: none;
         /* border-right: 2px solid rgb(138, 153, 197); */
         border-right: 2px solid lightsteelblue;
         /* border-bottom: 2px solid rgb(138, 153, 197); */
@@ -59,7 +76,7 @@
         display: inline-block;
         vertical-align: top;
         width: 66%;
-        border-top: none;
+        /* border-top: none; */
         /* border-left: 2px solid rgb(138, 153, 197); */
     }
 

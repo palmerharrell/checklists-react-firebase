@@ -340,13 +340,22 @@ class App extends React.Component {
                                     this.state.listData.lists[
                                         this.state.listData.activeList
                                     ].name
-                                }"`}?
+                                }"`}{" "}
+                                and all of its items?
                             </p>
 
-                            <button name="no" onClick={this.deleteList}>
+                            <button
+                                id="delete-no"
+                                name="no"
+                                onClick={this.deleteList}
+                            >
                                 NO
                             </button>
-                            <button name="yes" onClick={this.deleteList}>
+                            <button
+                                id="delete-yes"
+                                name="yes"
+                                onClick={this.deleteList}
+                            >
                                 YES
                             </button>
                         </div>

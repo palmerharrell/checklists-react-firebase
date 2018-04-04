@@ -73,11 +73,15 @@ class App extends React.Component {
 
     displayModal = modalType => {
         if (typeof modalType === "object") {
-            console.log("mobile list name clicked");
-            // TODO: set showMobileListMenu flag to true
+            const flags = { ...this.state.flags };
+            flags.showMobileListMenu = true;
+            this.setState({
+                flags
+            });
         } else {
             const flags = { ...this.state.flags };
             flags[modalType] = true;
+            flags.showMobileListMenu = false;
             this.setState({
                 flags
             });
@@ -92,9 +96,12 @@ class App extends React.Component {
 
     setActiveList = newActiveList => {
         const listData = { ...this.state.listData };
+        const flags = { ...this.state.flags };
         listData.activeList = newActiveList;
+        flags.showMobileListMenu = false;
         this.setState({
-            listData
+            listData,
+            flags
         });
     };
 
@@ -378,8 +385,6 @@ class App extends React.Component {
                         </div>
                     </div>
                 ) : null}
-                {/* TODO: set showMobileListMenu to false if list or buttons are 
-                clicked */}
                 {/* END Mobile List Names Dialog */}
                 <div id="logout">
                     <button onClick={this.logout}>Logout</button>

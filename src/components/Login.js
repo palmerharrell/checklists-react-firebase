@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase";
 import base, { firebaseApp } from "../base";
+import Header from "./Header";
 
 class Login extends React.Component {
     loadDemo = () => {
@@ -41,27 +42,35 @@ class Login extends React.Component {
     render() {
         return (
             <div id="login">
+                <Header headerText="CheckLists" />
                 <h2>Login with:</h2>
                 <button
+                    id="btn-github"
                     className="login-button"
                     onClick={() => this.authenticate("Github")}
                 >
                     GitHub
                 </button>
                 <button
+                    id="btn-twitter"
                     className="login-button"
                     onClick={() => this.authenticate("Twitter")}
                 >
                     Twitter
                 </button>
                 <button
+                    id="btn-facebook"
                     className="login-button"
                     onClick={() => this.authenticate("Facebook")}
                 >
                     Facebook
                 </button>
-                <h2>--- OR ---</h2>
-                <button className="login-button" onClick={this.loadDemo}>
+                <h2>&mdash; OR &mdash;</h2>
+                <button
+                    className="login-button"
+                    id="btn-demo"
+                    onClick={this.loadDemo}
+                >
                     Load Sample Data
                 </button>
             </div>

@@ -16,8 +16,6 @@ class ItemGroup extends React.Component {
                     key={key}
                     index={key}
                     listId={this.props.listId}
-                    // cbkey={`cb${key}`}
-                    // txtkey={`txt${key}`}
                     updateItem={this.props.updateItem}
                     deleteItem={this.props.deleteItem}
                 />

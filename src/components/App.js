@@ -33,7 +33,6 @@ class App extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.match;
-        // if (params.listsId === "demo") {
         if (this.state.uid === "demo") {
             this.loadSampleLists();
         } else {
@@ -396,7 +395,6 @@ class App extends React.Component {
                                 ? listData.lists[activeList].name + " "
                                 : "Add a List "}
                             &#9660;
-                            {/* &or; */}
                         </p>
                     </div>
                     <ListGroup

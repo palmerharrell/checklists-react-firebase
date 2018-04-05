@@ -14,15 +14,18 @@
     }
 
     /* *************************************** */
+    /*                  LOGIN                  */
+    /* *************************************** */
+    .login-button {
+        width: 30%;
+    }
+
+    /* *************************************** */
     /*               LISTS PANEL               */
     /* *************************************** */
     #mobile-list-name {
         display: none;
     }
-
-    /* #mlists {
-        display: none;
-    } */
 
     #lists {
         display: inline-block;
@@ -36,7 +39,6 @@
     }
 
     #list-names {
-        /* margin-bottom: 16px; */
         margin-bottom: 0;
         padding: 0;
         text-align: left;
@@ -48,7 +50,6 @@
         padding: 5px;
         width: auto;
         font-size: inherit;
-        /* border-right: 2px solid rgb(138, 153, 197); */
         border-right: 2px solid lightsteelblue;
     }
 
@@ -58,9 +59,7 @@
         padding-top: 10px;
         padding-bottom: 10px;
         border-top: none;
-        /* border-right: 2px solid rgb(138, 153, 197); */
         border-right: 2px solid lightsteelblue;
-        /* border-bottom: 2px solid rgb(138, 153, 197); */
         border-bottom: 2px solid lightsteelblue;
     }
 
@@ -80,8 +79,6 @@
         display: inline-block;
         vertical-align: top;
         width: 66%;
-        /* border-top: none; */
-        /* border-left: 2px solid rgb(138, 153, 197); */
     }
 
     .lonely {

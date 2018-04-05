@@ -392,9 +392,9 @@ class App extends React.Component {
                 <div id="content">
                     <div id="mobile-list-name" onClick={this.displayModal}>
                         <p>
-                            {listData.lists
+                            {listData.lists && activeList !== ""
                                 ? listData.lists[activeList].name + " "
-                                : null}
+                                : "Add a List "}
                             &#9660;
                             {/* &or; */}
                         </p>

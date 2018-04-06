@@ -71,7 +71,8 @@ class Login extends React.Component {
                     id="btn-demo"
                     onClick={this.loadDemo}
                 >
-                    Load Sample Data
+                    Load Demo
+                    <span id="demo-btn-text">(data will not be saved)</span>
                 </button>
             </div>
         );

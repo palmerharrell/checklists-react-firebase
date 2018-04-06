@@ -6,16 +6,24 @@ const data = {
                 name: "Movies",
                 items: {
                     item1: {
-                        text: "movie A",
+                        text: "A Quiet Place",
                         checked: false
                     },
                     item2: {
-                        text: "movie B",
-                        checked: true
+                        text: "Lady Bird",
+                        checked: false
                     },
                     item3: {
-                        text: "movie C",
+                        text: "Phantom Thread",
                         checked: false
+                    },
+                    item4: {
+                        text: "Black Panther",
+                        checked: true
+                    },
+                    item5: {
+                        text: "Annihilation",
+                        checked: true
                     }
                 }
             },
@@ -56,16 +64,20 @@ const data = {
                 name: "Music",
                 items: {
                     item1: {
-                        text: "Song/Artist A",
+                        text: "Janelle Monáe - Dirty Computer",
                         checked: false
                     },
                     item2: {
-                        text: "Song/Artist B",
+                        text: "Björk - Utopia",
                         checked: true
                     },
                     item3: {
-                        text: "Song/Artist C",
-                        checked: false
+                        text: "Air - Moon Safari",
+                        checked: true
+                    },
+                    item4: {
+                        text: "Tricky - Maxinquaye",
+                        checked: true
                     }
                 }
             },
@@ -73,35 +85,18 @@ const data = {
                 name: "Gifts",
                 items: {
                     item1: {
-                        text: "Gift A",
+                        text: "Mom(Mother's Day) - flowers",
                         checked: false
                     },
                     item2: {
-                        text: "Gift B",
+                        text: "Randy - New Shirt",
                         checked: true
-                    },
-                    item3: {
-                        text: "Gift C",
-                        checked: false
                     }
                 }
             },
             list5: {
                 name: "Wishlist",
-                items: {
-                    item1: {
-                        text: "Item A",
-                        checked: false
-                    },
-                    item2: {
-                        text: "Item B",
-                        checked: true
-                    },
-                    item3: {
-                        text: "Item C",
-                        checked: false
-                    }
-                }
+                items: {}
             }
         }
     }

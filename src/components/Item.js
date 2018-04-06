@@ -23,7 +23,11 @@ class Item extends React.Component {
 
     render() {
         return (
-            <li className="item">
+            <li
+                className={(
+                    "item " + (this.props.checked ? "checked" : "")
+                ).trim()}
+            >
                 <input
                     type="checkbox"
                     checked={this.props.checked}

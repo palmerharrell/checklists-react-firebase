@@ -392,9 +392,8 @@ class App extends React.Component {
                     <div id="mobile-list-name" onClick={this.displayModal}>
                         <p>
                             {listData.lists && activeList !== ""
-                                ? listData.lists[activeList].name + " "
-                                : "Add a List "}
-                            &#9660;
+                                ? listData.lists[activeList].name + " ▼"
+                                : "Add a List ▼"}
                         </p>
                     </div>
                     <ListGroup

@@ -3,7 +3,8 @@ import firebase from "firebase";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import MobileListGroup from "./MobileListGroup";
-import EditListsDialog from "./EditListDialog";
+import EditListsDialog from "./EditListsDialog";
+import DeleteListDialog from "./DeleteListDialog";
 import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
 import base from "../base";
@@ -316,37 +317,13 @@ class App extends React.Component {
                         }
                     />
                 ) : null}
-
                 {/* Delete List Dialog */}
                 {this.state.flags.deletingList ? (
-                    <div className="backdrop">
-                        <div id="list-dialog">
-                            <span className="cancel" onClick={this.deleteList}>
-                                &times;
-                            </span>
-                            <p id="list-dialog-title">
-                                Delete {`"${listData.lists[activeList].name}"`}{" "}
-                                and all of its items?
-                            </p>
-
-                            <button
-                                id="delete-no"
-                                name="no"
-                                onClick={this.deleteList}
-                            >
-                                NO
-                            </button>
-                            <button
-                                id="delete-yes"
-                                name="yes"
-                                onClick={this.deleteList}
-                            >
-                                YES
-                            </button>
-                        </div>
-                    </div>
+                    <DeleteListDialog
+                        deleteList={this.deleteList}
+                        activeList={`"${listData.lists[activeList].name}"`}
+                    />
                 ) : null}
-                {/* END Delete List Dialog */}
                 {/* Mobile List Names Dialog */}
                 {this.state.flags.showMobileListMenu ? (
                     <div className="backdrop">

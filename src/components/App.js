@@ -3,6 +3,7 @@ import firebase from "firebase";
 import Header from "./Header";
 import ListGroup from "./ListGroup";
 import MobileListGroup from "./MobileListGroup";
+import EditListsDialog from "./EditListDialog";
 import ItemGroup from "./ItemGroup";
 import sampleLists from "../sample-data";
 import base from "../base";
@@ -108,7 +109,7 @@ class App extends React.Component {
         // If this was called by anything but the cancel button
         if (e.currentTarget.name) {
             // Enter key or Add button. Don't do anything on other keypresses
-            if (e.key === "Enter" || e.currentTarget.name === "add") {
+            if (e.key === "Enter" || e.currentTarget.name === "edit") {
                 // Get text input value
                 const txtValue =
                     e.key === "Enter"
@@ -157,7 +158,7 @@ class App extends React.Component {
         // If this was called by anything but the cancel button
         if (e.currentTarget.name) {
             // Enter key or Change button. Don't do anything on other keypresses
-            if (e.key === "Enter" || e.currentTarget.name === "change") {
+            if (e.key === "Enter" || e.currentTarget.name === "edit") {
                 // Get text input value
                 const txtValue =
                     e.key === "Enter"
@@ -295,51 +296,27 @@ class App extends React.Component {
                 <Header headerText="CheckLists" />
                 {/* New List Dialog */}
                 {this.state.flags.addingList ? (
-                    <div className="backdrop">
-                        <div id="list-dialog">
-                            <span className="cancel" onClick={this.addList}>
-                                &times;
-                            </span>
-                            <p id="list-dialog-title">List Name</p>
-                            <input
-                                type="text"
-                                name="text-input"
-                                onKeyPress={this.addList}
-                                autoFocus
-                            />
-                            <button name="add" onClick={this.addList}>
-                                Add
-                            </button>
-                        </div>
-                    </div>
+                    <EditListsDialog
+                        editList={this.addList}
+                        editType={"Add"}
+                        title={"List Name"}
+                        placeholder={""}
+                    />
                 ) : null}
-                {/* END New List Dialog */}
                 {/* Rename List Dialog */}
                 {this.state.flags.renamingList ? (
-                    <div className="backdrop">
-                        <div id="list-dialog">
-                            <span className="cancel" onClick={this.renameList}>
-                                &times;
-                            </span>
-                            <p id="list-dialog-title">Rename List</p>
-                            <input
-                                type="text"
-                                name="text-input"
-                                onKeyPress={this.renameList}
-                                defaultValue={
-                                    this.state.listData.lists[
-                                        this.state.listData.activeList
-                                    ].name
-                                }
-                                autoFocus
-                            />
-                            <button name="change" onClick={this.renameList}>
-                                Change
-                            </button>
-                        </div>
-                    </div>
+                    <EditListsDialog
+                        editList={this.renameList}
+                        editType={"Change"}
+                        title={"Rename List"}
+                        placeholder={
+                            this.state.listData.lists[
+                                this.state.listData.activeList
+                            ].name
+                        }
+                    />
                 ) : null}
-                {/* END Rename List Dialog */}
+
                 {/* Delete List Dialog */}
                 {this.state.flags.deletingList ? (
                     <div className="backdrop">
